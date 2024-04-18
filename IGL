@@ -1,0 +1,28 @@
+# The equation to solve a missing variable for Ideal Gas Law, PV = nRT
+
+def IGL(var1,var2,input1,input2):
+    # Input Options
+        # 1 = temperature (K)
+        # 2 = pressure (Pa)
+        # 3 = specific volume (m^3/kg)
+        # 4 = rho or inverse density (m^3/kg)
+    # INPUT VALUES MUST MATCH "VAR" VALUES
+    R = 8.314 #J/(mol*K)
+    n = 1 #default
+
+    if input1 == 1 and input2 == 2:
+        print("Volume (m^3/kg) = " + str((n*R*var1)/var2))
+    elif input1 == 2 and input2 == 1:
+        print("Volume (m^3/kg) = " + str((n*R*var2)/var1))
+    elif input1 == 3 and input2 == 1:
+        print("Pressure (m^3) = " + str((n*R*var2)/var1))
+    elif input1 == 1 and input2 == 3:
+        print("Pressure (Pa) = " + str((n*R*var1)/var2))
+    elif input1 == 2 and input2 == 3 or input1 == 3 and input2 == 2:
+        print("Temperature (K) = " + str((var1*var2)/(n*R)))
+    elif input1 == 4 and input2 == 1 or input1 == 1 and input2 == 4:
+        print("Pressure (Pa) = " + str((var1*n*R*var2)))
+    elif input1 == 4 and input2 == 2:
+        print("Temperature (K) = " + str((var2/(var1*n*R))))
+    elif input1 == 2 and input2 == 4:
+        print("Temperature (K) = " + str(var1/(var2*n*R)))
