@@ -1,0 +1,50 @@
+#Functions to solve variables in Hydrostatic Equilibrium Equation
+# dp/dz = -rho*g
+
+import numpy as np
+
+#Version 1: Variables (dp,dz,rho) Known
+def hydrostatic(var1,var2,input1,input2):
+    g = -9.8 #gravity (m/s^2)
+    #Inputs are:
+    # 1 = dp (Pa)
+    # 2 = dz (m)
+    # 3 = rho (kg/m^3)
+    if input1 == 1 and input2 == 2:
+        print("rho (kg/m^3) = " + str(-(var1/(var2*g))))
+    elif input1 == 2 and input2 == 1:
+        print("rho (kg/m^3) = " + str(-(var2/(var1*g))))
+    elif input1 == 1 and input2 == 3:
+        print("dz (m) = " + str(-var1/(var2*g)))
+    elif input1 == 3 and input2 == 1:
+        print("dz (m) = " + str(-var2/(var1*g)))
+    elif input1 == 2 and input2 == 3 or input1 == 3 and input2 ==2:
+        print("dp (Pa) = " + str(-(var1*var2*g)))
+
+#Version of dp/dz = -rho*g will be skipped as that is just -rho*g
+
+hydrostatic(1000,1,2,3)
+
+#Version 2: Integral Version p,z,or rho are known
+def hydrostatic(var1,var2,input1,input2):
+    # Inputs are:
+    # 1 = p (Pa) An array of at least two elements
+    # 2 = z (m) An array of at least two elements
+    # 3 = rho (kg/m^3) A constant
+    g = -9.8 #gravity (m/s^2)
+    if input1 == 1 and input2 == 2:
+        print("rho (kg/m^3) = " + str(np.diff(var1)*(-np.diff(var2)*g)))
+    elif input1 == 2 and input2 == 1:
+        print("rho (kg/m^3) = " + str(np.diff(var2)*(-np.diff(var1)*g)))
+    elif input1 == 1 and input2 == 3:
+        print("dz (m) = " + str(np.diff(var1)/(-var2*g)))
+    elif input1 == 3 and input2 == 1:
+        print("dz (m) = " + str(np.diff(var2)/(-var1*g)))
+    elif input1 == 2 and input2 == 3:
+        print("dp (Pa) = " + str(np.diff(var1)*(-var2*g)))
+    elif input1 == 3 and input2 == 2:
+        print("dp (Pa) = " + str(np.diff(var2)*(-var1*g)))
+
+Pa_List = [100000, 90000, 80000, 70000, 60000]
+gz_List = [10, 100, 1000, 2000, 3000]
+hydrostatic(Pa_List,gz_List,1,2)
