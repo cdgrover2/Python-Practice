@@ -1,0 +1,54 @@
+#Function for the Hypsometric Equation
+import math
+
+
+def hypso(var1,var2,var3,input1,input2,input3):
+    #Variables are Virtual Temperature, Pressure1, Pressure2, or h
+    #Inputs are the following: THEY MUST MATCH WHAT YOU PUT FOR var#
+    # 1 = Virtual Temperature, Tv (K)
+    # 2 = Pressure1, p1, (Pa)
+    # 3 = Pressure2, p2, (Pa)
+    # 4 = h or z2-z1 (m)
+    e = 2.718
+    Rd = 287 #(J/kgK) Dry Gas Constant
+    g = 9.8 #(m/s**2) Gravity
+    if input1 == 2 and input2 == 3 and input3 == 4:
+        print("Tv (K) = " + str((var3*g)/(Rd)*(1/math.log(var1/var2))))
+    elif input1 == 2 and input2 == 4 and input3 == 3:
+        print("Tv (K) = " + str((var2*g)/(Rd)*(1/math.math.log(var1/var3))))
+    elif input1 == 3 and input2 == 2 and input3 == 4:
+        print("Tv (K) = " + str((var3*g)/(Rd)*(1/math.log(var2/var1))))
+    elif input1 == 3 and input2 == 4 and input3 == 2:
+        print("Tv (K) = " + str((var2*g)/(Rd)*(1/math.log(var3/var1))))
+    elif input1 == 4 and input2 == 2 and input3 == 3:
+        print("Tv (K) = " + str((var1*g)/(Rd)*(1/math.log(var2/var3))))
+    elif input1 == 4 and input2 == 3 and input3 == 2:
+        print("Tv (K) = " + str((var1*g)/(Rd)*(1/math.log(var3/var2))))
+# Please let me know if there's a way to simplify this    
+    elif input1 == 1 and input2 == 3 and input3 == 4:
+        print("p1 (Pa) = " + str(math.e**((var3*g)/(Rd*var1))*var2))
+    elif input1 == 1 and input2 == 4 and input3 == 3:
+        print("p1 (Pa) = " + str(math.e**((var2*g)/(Rd*var1))*var3))
+    elif input1 == 3 and input2 == 4 and input3 == 1:
+        print("p1 (Pa) = " + str(math.e**((var2*g)/(Rd*var3))*var1))
+    elif input1 == 3 and input2 == 1 and input3 == 4:
+        print("p1 (Pa) = " + str(math.e**((var3*g)/(Rd*var2))*var1))
+    elif input1 == 4 and input2 == 1 and input3 == 3:
+        print("p1 (Pa) = " + str(math.e**((var1*g)/(Rd*var2))*var3))
+    elif input1 == 4 and input2 == 3 and input3 == 1:
+        print("p1 (Pa) = " + str(math.e**((var1*g)/(Rd*var3))*var2))
+
+    elif input1 == 1 and input2 == 2 and input3 == 4:
+        print("p2 (Pa) = " + str((math.e**(var3*g)/(Rd*var1)*var2)**-1))
+    elif input1 == 1 and input2 == 4 and input3 == 2:
+        print(("p2 (Pa) = " + str(math.e**(var2*g)/(Rd*var1)*var3)**-1))
+    elif input1 == 2 and input2 == 1 and input3 == 4:
+        print("p2 (Pa) = " + str((math.e**(var3*g)/(Rd*var2)*var1)**-1))
+    elif input1 == 2 and input2 == 4 and input3 == 1:
+        print("p2 (Pa) = " + str((math.e**(var2*g)/(Rd*var3)*var1)**-1))
+    elif input1 == 4 and input2 == 1 and input3 == 2:
+        print("p2 (Pa) = " + str((math.e**(var1*g)/(Rd*var2)*var3)**-1))
+    elif input1 == 4 and input2 == 2 and input3 == 1:
+        print("p2 (Pa) = " + str((math.e**(var1*g)/(Rd*var3)*var2)**-1))
+
+hypso(100000,50000,5000,2,3,4)
