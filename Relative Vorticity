@@ -1,5 +1,8 @@
 #Relative Vorticity
 # dv - du = 0
+
+# Function assumes data is 4D (x,y,u-component of wind,v-component of wind)
+
 import numpy as np
 import math as math
 
