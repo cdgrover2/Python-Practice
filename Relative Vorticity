@@ -1,0 +1,18 @@
+#Relative Vorticity
+# dv - du = 0
+import numpy as np
+import math as math
+
+#MAKE SURE DIMENSIONS OF LON & LAT ARE COMPATIBLE
+def rel_vort(lon,lat,u,v):
+    lon_2 = np.reshape(lon,(1,-1))
+    lat_2 = np.reshape(lat,(-1,1))
+    dx = (np.diff(lon_2[:])*111000)*(np.cos(lat_2[:]*(math.pi/180)))
+    dx_reshaped = dx[np.newaxis,np.newaxis,:,:] # This reshaping portion assisted with ChatGPT
+    dy = np.diff(lat_2[:],1,0)*111000
+    dy_reshaped = dy[np.newaxis,np.newaxis,:,:] # This reshaping portion assisted with ChatGPT
+    du = np.diff(u, n=1,axis = 3)
+    dv = np.diff(v, n=1,axis = 2)
+    Term1 = (dv[:,:,:,0:143]/dx_reshaped[:,:,0:72,:])
+    Term2 = (du[:,:,0:72,:]/dy_reshaped[:,:,0:72,:])
+    return Term1 - Term2
